@@ -1,4 +1,5 @@
 const path = require('path');
+const pug = require('pug')
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 //const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -65,7 +66,7 @@ module.exports = {
         },
         plugins:[
            new HTMLWebpackPlugin({
-           template: './pages/index/index.html',
+           template: './pages/index/index.pug',
            minify: {
             collapseWhitespace: isProd
            }
@@ -84,6 +85,10 @@ module.exports = {
         ],
         module: {
                 rules: [
+                {
+                    test: /\.pug$/,
+                    loader: 'pug-loader'
+                },
                 {
                     test: /\.css$/,
                     use: cssLoaders()
